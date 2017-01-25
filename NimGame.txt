@@ -1,0 +1,67 @@
+/*
+	This refers to the regular nim game where there are n piles.
+	Each pile contains a set number of stones. There are two players,
+	each player must take at least one stone each time it's their turn.
+	The person to take the last stone wins.
+
+	Input is as follows.
+
+	First line conatains the number of games to be played. (G)
+
+	The next two lines are coupled.
+	The first containes (P), the number of piles.
+	The second line contains the pile amount numbers separated by spaces.
+
+
+	ex/
+
+	2 // <- Number of games
+	2 // <- Number of piles
+	1 1 // <- Each pile contains only one stone each
+	3
+	2 1 3
+
+	If both players are playing optimally, who will win?
+	If first player, print "FIRST".
+	If second player, print "Second".
+*/
+
+/*
+	Assuming the rules are as stated the following will
+	provide the winner of the game should both players
+	play in a manner that optimizes their chances of 
+	winning.
+*/
+#include <iostream>
+#include <csmath>
+#include <algorithm>
+
+using namespace std;
+int main(){
+
+	int numOfGames;
+	int numOfPiles;
+	int winner = 0;
+	int input;
+
+	cin >> numOfGames;
+
+	while(numOfGames--){
+
+		cin >> numOfPiles;
+
+		while(numOfPiles--){
+			cin >> input;
+			winner ^= input;		//  Take the bitwise XOR of every pile
+		}
+
+		if(winner == 0){
+			cout << "Second" << endl;
+		} else {
+			cout << "First" << endl;
+		}
+
+		winner = 0; // reset
+	}
+	return 0;
+}
